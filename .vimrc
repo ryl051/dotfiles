@@ -16,27 +16,15 @@ set sw=4
 set si
 set backspace=indent,eol,start
 
-
 inoremap { {}<Left>
 inoremap {<CR> {<CR>}<Esc>O
 inoremap {{ {
 inoremap {} {}
 autocmd filetype verilog inoremap begin<CR> begin<CR>end<Esc>O
 
-
 autocmd filetype cpp nnoremap <F9> :w <bar> !g++ -std=c++14 % -o %:r -Wl,--stack,268435456<CR>
 autocmd filetype cpp nnoremap <F10> :!%:r<CR>
 autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-
-" reset the cursor on start (for older versions of vim, usually not required)
-augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[2 q"
-augroup END
-
-
 
 set nu
 augroup numbertoggle
