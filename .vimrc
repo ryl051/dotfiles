@@ -1,14 +1,10 @@
-" Install vim-plug if not found
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-endif
+call plug#begin()
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'vim-airline/vim-airline'
+call plug#end()
 
-" Run PlugInstall if there are missing plugins
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
-
+nnoremap <C-n> :NERDTreeToggle<CR>
 autocmd BufRead,BufNewFile *.v,*.sv set filetype=verilog
 
 au GUIEnter * simalt ~x
@@ -20,16 +16,13 @@ set ts=4
 set sw=4
 set si
 set backspace=indent,eol,start
+set mouse=a
 
 inoremap { {}<Left>
 inoremap {<CR> {<CR>}<Esc>O
 inoremap {{ {
 inoremap {} {}
 autocmd filetype verilog inoremap begin<CR> begin<CR>end<Esc>O
-
-autocmd filetype cpp nnoremap <F9> :w <bar> !g++ -std=c++14 % -o %:r -Wl,--stack,268435456<CR>
-autocmd filetype cpp nnoremap <F10> :!%:r<CR>
-autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
 
 set nu
 augroup numbertoggle
