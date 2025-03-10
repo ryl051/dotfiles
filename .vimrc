@@ -1,10 +1,11 @@
 call plug#begin()
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
 nnoremap <C-n> :NERDTreeToggle<CR>
+
+autocmd filetype python nnoremap <F5> :w <bar> !python %<CR>
 autocmd BufRead,BufNewFile *.v,*.sv set filetype=verilog
 
 au GUIEnter * simalt ~x
@@ -23,6 +24,8 @@ inoremap {<CR> {<CR>}<Esc>O
 inoremap {{ {
 inoremap {} {}
 autocmd filetype verilog inoremap begin<CR> begin<CR>end<Esc>O
+autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
+autocmd filetype python nnoremap <C-C> :s/^\(\s*\)/\1#/<CR> :s/^\(\s*\)##/\1/<CR> $
 
 set nu
 augroup numbertoggle
