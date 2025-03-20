@@ -8,11 +8,9 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 autocmd filetype python nnoremap <F5> :w <bar> !python %<CR>
 autocmd BufRead,BufNewFile *.v,*.sv set filetype=verilog
 
-au GUIEnter * simalt ~x
 set hls
 set is
 set cb=unnamed
-set gfn=Fixedsys:h14
 set ts=4
 set sw=4
 set si
